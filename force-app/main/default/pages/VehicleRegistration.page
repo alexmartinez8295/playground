@@ -1,0 +1,20 @@
+<apex:page controller="VehicleRegisrationController">
+<apex:form id="formId">
+<apex:pageBlock >
+<apex:pageBlockTable value="{!V1}" var="v">
+<apex:column headerValue="Vehicle Name">
+<apex:inputField value="{!V1.Name}"/>
+</apex:column>
+<apex:column headerValue="Is insured">
+<apex:inputField value="{!V1.Is_insured__c}">
+<apex:actionSupport event="onclick" reRender="formId"/>
+</apex:inputField>
+</apex:column>
+<apex:column headerValue="Amount">
+<apex:inputField value="{!V1.Insured_Amount__c}" rendered="{!V1.Is_insured__c==true}"/>
+</apex:column>
+</apex:pageBlockTable>
+</apex:pageBlock>
+<apex:commandButton value="Save" action="{!saveMethod}"/>
+</apex:form>
+</apex:page>

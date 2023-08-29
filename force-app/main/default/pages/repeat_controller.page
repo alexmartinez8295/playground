@@ -1,0 +1,8 @@
+<apex:page controller="testing_repeat_controller" sidebar="false">
+<apex:repeat value="{!Itemsforuser}" var="item">    
+    <apex:outputPanel >
+        <apex:outputText value="{!item.Name}"/>
+        {!IF(account_index_map[item] == lastindexofaccount,'',',')}
+    </apex:outputPanel>
+</apex:repeat>
+</apex:page>

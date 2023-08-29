@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Id_Prospecto_SF_BIDS__c</fullName>
+    <displayFormat>{00000000}</displayFormat>
+    <externalId>true</externalId>
+    <label>Id Prospecto SF BIDS</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>AutoNumber</type>
+</CustomField>

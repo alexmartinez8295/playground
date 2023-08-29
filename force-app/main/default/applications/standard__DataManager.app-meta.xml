@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <content>P_gina_de_inicio_predeterminada</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+    </actionOverrides>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <label>Data Manager</label>
+    <navType>Standard</navType>
+    <tabs>standard-AnalyticsDataManager</tabs>
+    <tabs>Vivienda__c</tabs>
+    <tabs>Plaza__c</tabs>
+    <tabs>Fraccionamiento__c</tabs>
+    <tabs>Prototipos__c</tabs>
+    <tabs>Estado__c</tabs>
+    <tabs>Municipio__c</tabs>
+    <uiType>Lightning</uiType>
+</CustomApplication>

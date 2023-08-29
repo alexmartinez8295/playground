@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>alexis.martinez@cloudmobile.com.mx</contactEmail>
+    <label>BIDStoSF</label>
+    <oauthConfig>
+        <callbackUrl>https://localhost:8080/</callbackUrl>
+        <consumerKey>3MVG9Kip4IKAZQEXRato_n4w09wg7YRXzKP0kDIyo9L5NUNfWuKtOSYMsfspdFN9qGoxVlAqrbcB_tawNhH8A</consumerKey>
+        <isAdminApproved>true</isAdminApproved>
+        <scopes>Full</scopes>
+    </oauthConfig>
+    <profileName>Administrador del sistema</profileName>
+    <profileName>Usuario estándar</profileName>
+    <profileName>Administrador del contrato</profileName>
+</ConnectedApp>

@@ -1,0 +1,5 @@
+<apex:page > 
+<apex:form > 
+           <apex:commandButton value="Open SecondVF"  onclick="window.open('apex/SecondVF','popUpWindow','height=200,width=400,left=100,top=100');"  />
+  </apex:form>
+</apex:page>

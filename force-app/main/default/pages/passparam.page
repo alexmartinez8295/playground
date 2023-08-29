@@ -1,0 +1,28 @@
+<apex:page controller="passparam">
+    <apex:form >
+        <apex:pageblock id="pgblck">
+            First name : <apex:inputtext id="fn" value="{!firstname}"><br/>
+            Last Name :<apex:inputtext id="ln" value="{!lastname}"><br/>
+            Click this to See full name :  <br/>
+            <apex:inputcheckbox onclick="calculate('{!$Component.fn}','{!$Component.ln}')"><br/>
+            Full Name:    <br/>
+                <apex:outputtext value="{!fullname}"></apex:outputtext><br/>
+            </apex:inputcheckbox></apex:inputtext></apex:inputtext>
+        </apex:pageblock>
+        
+        <apex:actionfunction action="{!calpercentage}" name="calAF" rerender="pgblck">
+            <apex:param assignto="{!firstname}" name="param1" value="" />
+            <apex:param assignto="{!lastname}" name="param" value="" />
+        </apex:actionfunction>
+    </apex:form>
+    
+    <script>
+    function calculate(frst,lst){
+        var Fname = document.getElementById(frst).value;
+        var Lname = document.getElementById(lst).value;
+        var res = confirm('Do you want to calculate?');
+        if(res == true)
+            calAF(Fname,Lname );
+    }
+    </script>
+</apex:page>

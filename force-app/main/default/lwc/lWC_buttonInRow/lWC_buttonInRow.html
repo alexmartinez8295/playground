@@ -1,0 +1,12 @@
+<template>
+    <lightning-card title="Add Buttons In LWC Datatable Salesforce" icon-name="standard:account">
+        <template if:true={data}>
+            <lightning-datatable key-field="Id" data={data} columns={columns} hide-checkbox-column="true"
+                show-row-number-column="true" onrowaction={callRowAction}>
+            </lightning-datatable>
+        </template>
+        <template if:true={error}>
+            {error}>
+        </template>
+    </lightning-card>
+</template>

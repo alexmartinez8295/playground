@@ -1,0 +1,23 @@
+<template>
+    <lightning-card title="Componente LWC Para actualizar en modo offline" icon-name="standard:record">
+        <template if:true={showLoading}>
+            <lightning-spinner alternative-text="Cargando" size="medium" class="spinnerClass"></lightning-spinner>
+        </template>
+        <div class="slds-m-around_medium">
+            <template if:true={formato.data}>
+                <lightning-input label="Id" disabled value={formato.data.Id}></lightning-input>
+                <lightning-input label="Folio" value={formato.data.Name} data-field="Folio" onchange={handleChange}
+                    class="slds-m-bottom_x-small" required></lightning-input>
+                <lightning-input label="Nombre del Formato" value={formato.data.Nombre_Formato__c} data-field="Nombre" onchange={handleChange}
+                    class="slds-m-bottom_x-small" required></lightning-input>
+                <lightning-input label="Clave" value={formato.data.Clave__c} data-field="Clave" onchange={handleChange}
+                    class="slds-m-bottom_x-small"></lightning-input>
+                <lightning-button label="Actualizar Formato" variant="brand" onclick={handleUpdate} disabled={disabled}>
+                </lightning-button>
+            </template>
+            <template if:true={formato.error}>
+                <!-- handle Apex error -->
+            </template>
+        </div>
+    </lightning-card>
+</template>

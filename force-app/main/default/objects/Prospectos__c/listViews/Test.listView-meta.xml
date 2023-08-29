@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Test</fullName>
+    <columns>NAME</columns>
+    <columns>Id_Prospecto_SF_BIDS__c</columns>
+    <columns>N_mero_de_Nombramiento__c</columns>
+    <columns>Estatus_BIDS_prospecto__c</columns>
+    <columns>Motivo_de_rechazo__c</columns>
+    <filterScope>Mine</filterScope>
+    <label>Test</label>
+</ListView>

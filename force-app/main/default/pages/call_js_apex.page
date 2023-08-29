@@ -1,0 +1,9 @@
+<apex:page controller="calljavascript_cls" >
+    <script>
+    function func()
+    {
+        alert('function calling');
+    }
+    </script>
+    <apex:outputText value="{!callfunc}" escape="false"></apex:outputText>
+</apex:page>

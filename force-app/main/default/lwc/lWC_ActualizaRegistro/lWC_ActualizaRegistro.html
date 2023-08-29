@@ -1,0 +1,90 @@
+<template>
+    <!-- To show the toast message in vf pages/classic enviornment-->
+     <template if:true={showErrMsg}>
+         <!-- <c-generic-toast-messages notificationtype={notifType} notificationmessage={notifMsg}></c-generic-toast-messages> -->
+         <div class="slds-m-bottom_x-small"></div>
+     </template>
+ 
+ 
+ 
+     <template if:true={showDefTable}>
+         <lightning-datatable data={listAllCases} columns={columns} key-field="id" hide-checkbox-column="true"></lightning-datatable>
+     </template>
+ 
+ 
+     <template if:true={listAllCloseableCasesData}>
+ 
+         <div>
+             <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                 <thead>
+                     <tr>
+                         <th>
+                             <lightning-input type="checkbox" label="" onchange={selectDeselectAll} value={selAllChe}>
+                             </lightning-input>
+                         </th>
+                         <th>Case Number</th>
+                         <th>Status</th>
+                         <th>Origin</th>
+                         <th>Type</th>
+                         <th>Subject</th>
+                         <th>ContactMobile</th>
+                         <th>Can Close?</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     <template for:each={listAllCloseableCasesData} for:item="aItem">
+                         <tr key={aItem.cs.CaseNumber}>
+                             <td>
+                                 <template if:true={aItem.isCloseable} class="slds-text-align--left">
+                                     <lightning-input type="checkbox" data-id={aItem.cs.CaseNumber} label="" value={aItem.isSelect} checked={aItem.isSelect} onchange={rowSelChangeEvent} ></lightning-input>
+                                     <span class="slds-checkbox--faux"></span>
+                                     <span class="slds-form-element__label text"></span>
+                                 </template>
+                                 <template if:false={aItem.isCloseable}>
+                                     <lightning-icon icon-name="utility:error" alternative-text="Can't Close" variant="error" size="x-small" style="padding:0.1rem !important;"></lightning-icon></span>
+                                 </template>
+ 
+                             </td>
+                             <td >{aItem.cs.CaseNumber}-{aItem.isCloseable}</td>
+                             <td >{aItem.cs.Status}</td>
+                             <td>{aItem.cs.Origin}</td>
+                             <td>{aItem.cs.Type}</td>
+                             <td>{aItem.cs.Subject}</td>
+                             <td>{aItem.cs.ContactMobile}</td>                          
+                             <td class="slds-text-align--center">
+                                 <template if:true={aItem.isCloseable}>
+                                     <lightning-icon icon-name="action:approval" alternative-text="Closeable" size="xx-small" style="padding:0.1rem !important;"></lightning-icon>
+                                 </template>
+                                 <template if:false={aItem.isCloseable}>
+                                     <lightning-icon icon-name="utility:error" alternative-text="Non-Cancellable" variant="error" size="small" style="padding:0.1rem !important;"></lightning-icon>
+                                 </template>
+                             </td>
+                           
+                         </tr>
+                     </template>
+ 
+                 </tbody>
+ 
+             </table>
+         </div>
+     </template>
+     <template if:true={showIsCloseableBtn} class="slds-is-relative">
+         <lightning-button label="Check Closeable Cases" title="Check Closeable Cases" variant="success" onclick={checkIsCloseableCasesJs} class="slds-align_absolute-center slds-m-top_medium slds-size_small"></lightning-button>
+ 
+         <div if:true={isLoading}>
+             <lightning-spinner alternative-text="Loading..." variant="brand" size="large" class="slds-is-absolute"></lightning-spinner>
+         </div>
+     </template>
+ 
+ 
+     <template if:true={showConfirmClosebtn} class="slds-is-relative">
+         <lightning-button label="Close Selected" title="Close Selected" variant="success" onclick={closelselectedCaseJs} class="slds-align_absolute-center slds-m-top_medium"></lightning-button>
+         <div if:true={isLoading}>
+             <lightning-spinner alternative-text="Loading..." variant="brand" size="large" class="slds-is-absolute"></lightning-spinner>
+         </div>
+     </template>
+ 
+     <template if:false={listAllCases}>
+         No Cases Found For This Account.
+     </template>
+ </template>

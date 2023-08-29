@@ -1,0 +1,56 @@
+<apex:page docType="html-5.0" standardStylesheets="false" lightningStylesheets="true">
+<!--jQuery CDN-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!--Salesforce Lightning Design System Static Resource-->
+<!-- <apex:stylesheet value="{!URLFOR($Resource.SLDS213, 'assets/styles/salesforce-lightning-design-system-vf.min.css')}" />-->
+<script>
+var j$ = jQuery.noConflict();
+</script>
+<html> 
+<head>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<!--The Salesforce Lightning Design System Wrapping Div with Scoping Class -->
+<div class="minerva18">
+ 
+<!--SLDS Checkbox Toggle Element Start-->
+<div class="slds-form-element">
+  <label class="slds-checkbox--toggle slds-grid">
+    <span class="slds-form-element__label slds-m-bottom--none">Toggle Label 1</span>
+    <input id="toggle1" name="checkbox" type="checkbox" aria-describedby="toggle-desc" />
+    <span id="toggle-desc" class="slds-checkbox--faux_container" aria-live="assertive">
+      <span class="slds-checkbox--faux"></span>
+      <span class="slds-checkbox--on">Enabled</span>
+      <span class="slds-checkbox--off">Disabled</span>
+    </span>
+  </label>
+</div>
+<!--SLDS Checkbox Toggle Element End-->
+<div class="slds-text-body--regular slds-m-top--small">The toggle is &rarr; <span style="font-weight:bold;" id="toggleValue1">Off</span></div>
+
+<div class="slds-form-element">
+    <label class="slds-checkbox_toggle slds-grid">
+      <span class="slds-form-element__label slds-m-bottom_none">Toggle Label 2</span>
+      <input type="checkbox" name="checkbox-toggle-16" value="checkbox-toggle-16" aria-describedby="checkbox-toggle-16" />
+      <span id="checkbox-toggle-16" class="slds-checkbox_faux_container" aria-live="assertive">
+        <span class="slds-checkbox_faux"></span>
+        <span class="slds-checkbox_on">Enabled</span>
+        <span class="slds-checkbox_off">Disabled</span>
+      </span>
+    </label>
+  </div>
+ 
+<script>
+j$('#toggle1').on('change',function() {
+//The syntax inside the if statement below returns true for toggle checked and false for toggle unchecked
+       if(j$(this).prop('checked')){
+           j$('#toggleValue1').text('On');
+       }else{
+           j$('#toggleValue1').text('Off');
+       }
+});
+</script> 
+ 
+</div>
+</html>
+</apex:page>

@@ -1,0 +1,36 @@
+<apex:page controller="SubmitFormController">
+    <script type="text/javascript">
+    function submitData() {
+        var uname = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        var whats = document.getElementById('whats').value;
+        var face = document.getElementById('face').value;
+        var insta = document.getElementById('insta').value;
+        var tik = document.getElementById('tik').value;
+        var comen = document.getElementById('comen').value;
+        submitActionFunction(uname, password, whats, face, insta, tik, comen);
+    }
+    </script>
+    <apex:form >
+        <apex:actionFunction name="submitActionFunction" action="{!submitForm}"  reRender="actionFun">
+            <apex:param name="uname" assignTo="{!username}" value="" />
+            <apex:param name="pwd" assignTo="{!password}" value="" />
+             <apex:param name="wh" assignTo="{!whatsapp}" value="" />
+             <apex:param name="fb" assignTo="{!facebook}" value="" />
+             <apex:param name="ig" assignTo="{!instagram}" value="" />
+             <apex:param name="tk" assignTo="{!tiktok}" value="" />
+             <apex:param name="cmn" assignTo="{!comentario}" value="" />
+        </apex:actionFunction>
+        <center>
+            Username: <input type="text" id="username" value=""/> <br/> <br/>
+            Password: <input type="text" id="password" value=""/> <br/> <br/>
+            Whats: <input type="text" id="whats" value=""/> <br/> <br/>
+            Face: <input type="text" id="face" value=""/> <br/> <br/>
+            Insta: <input type="text" id="insta" value=""/> <br/> <br/>
+            tiktok: <input type="text" id="tik" value=""/> <br/> <br/>
+            Comentario: <input type="text" id="comen" value=""/> <br/> <br/>
+            <input type="button" onclick="submitData();" value="Submit From HTML Button"/> &nbsp; &nbsp;
+            <apex:commandButton value="Submit From Apex Button" onclick="submitData();" reRender="sapex"/>
+        </center>
+    </apex:form>  
+</apex:page>

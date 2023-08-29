@@ -1,0 +1,11 @@
+<apex:page controller="lista_dinamica_controller">
+    <apex:form >
+    	<apex:pageblock >
+        	<apex:pageBlockTable value="{!lstObjs}" var="rec">
+            	<apex:repeat value="{!lstFlds}" var="fld">
+                	<apex:column value="{!rec[fld]}"/>
+                </apex:repeat>
+            </apex:pageBlockTable>        
+        </apex:pageblock>
+    </apex:form>
+</apex:page>

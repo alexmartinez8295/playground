@@ -1,0 +1,117 @@
+<apex:component controller="SignatureComponentController" allowDML="true">
+    <apex:attribute name="parentId" type="id" description="The Id of the record for Signature" required="true" assignTo="{!objParentId}" />
+    <head>
+        <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+        </link>
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <script>var $ = jQuery.noConflict();</script>
+    </head>
+    <body>
+        <div data-role="page" id="signatureCaptureHome">
+            <div data-role="content">
+                <h1 id="recordSigId">Record Signature:</h1>
+                <canvas id="myCanvas" width="400" height="250" style="border:2px solid black"></canvas>
+                <br /><br />
+                <button onclick="javascript:clearArea();return false;">Limpiar</button>
+                <button onclick="saveSignature();">Guardar</button>
+            </div>
+        </div>
+    </body>
+    <script>
+        var mousePressed = false;
+        var lastX, lastY;
+        var canvas;
+        var ctx;
+        var canSave = false;
+        var parentId = '{!objParentId}';
+        var coordX = new Array();
+        var coordY = new Array();
+
+        $(document).ready(function () {
+            canvas = document.getElementById('myCanvas');
+            ctx = canvas.getContext("2d");
+
+            $('#myCanvas').mousedown(function (e) {
+                mousePressed = true;
+                Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, false);
+            });
+
+            $('#myCanvas').mousemove(function (e) {
+                if (mousePressed) {
+                    var canSave = true;
+                    Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
+                }
+            });
+
+            $('#myCanvas').mouseup(function (e) {
+                mousePressed = false;
+            });
+            $('#myCanvas').mouseleave(function (e) {
+                mousePressed = false;
+            });
+            $('#myCanvas').touchstart(function (e) {
+                mousePressed = true;
+                Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, false);
+            });
+            $('#myCanvas').touchmove(function (e) {
+                if (mousePressed) {
+                    var canSave = true;
+                    Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
+                }
+            });
+            $('#myCanvas').touchend(function (e) {
+                mousePressed = false;
+            });
+        })
+
+        function Draw(x, y, isDown) {
+            if (isDown) {
+                ctx.beginPath();
+                ctx.strokeStyle = 1;
+                ctx.lineWidth = "black";
+                ctx.lineJoin = "round";
+                ctx.moveTo(lastX, lastY);
+                ctx.lineTo(x, y);
+                ctx.closePath();
+                ctx.stroke();
+            }
+            lastX = x; lastY = y;
+            coordX.push(lastX);
+            coordY.push(lastY);
+            console.log('coordX: ' + coordX);
+            console.log('coordY: ' + coordY);
+        }
+
+        function clearArea() {
+            // Use the identity matrix while clearing the canvas
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        }
+
+        function saveSignature() {
+            var strDataURI = canvas.toDataURL();
+            console.log(strDataURI);
+            strDataURI = strDataURI.replace(/^data:image\/(png|jpg);base64,/, "");
+            console.log(strDataURI);
+            var coordenadasX = new Array();
+            coordenadasX = coordX;
+            console.log('coordX: ' + coordX);
+            var coordenadasY = new Array();
+            coordenadasY = coordY;
+            console.log('coordY: ' + coordY);
+            SignatureComponentController.guardaFirma(strDataURI, parentId, processResult);
+            console.log('Después de llamar clase de apex');
+        }
+
+        function processResult(result) {
+            if (result) {
+                //top.location.href='/'+parentId;
+                alert('OK');
+            } else {
+                alert('Ocurrió un error al guardar la firma.');
+            }
+            console.log(result);
+        }
+    </script>
+</apex:component>
